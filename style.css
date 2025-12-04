@@ -1,0 +1,152 @@
+/* 기본 설정: 브라우저 기본 마진/패딩 제거, 전체 화면 설정 */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* 스크롤바 방지 */
+    font-family: 'Arial', sans-serif; 
+    color: white; 
+}
+
+/* 앱 컨테이너: 전체 화면 블랙 모드 */
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Viewport height 꽉 채우기 */
+    width: 100vw;  /* Viewport width 꽉 채우기 */
+    background-color: #000000; /* 블랙 모드 배경 */
+    transition: background-color 0.1s; /* 깜빡임 효과를 위한 부드러운 전환 */
+}
+
+/* 탭 메뉴 스타일 */
+.tabs {
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #333;
+    z-index: 10; /* 버튼이 시간 위에 표시되도록 설정 */
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    color: #888;
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.tab-button.active {
+    color: white;
+    border-bottom: 3px solid white;
+    font-weight: bold;
+}
+
+/* 모드 컨테이너 스타일 */
+.mode-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.mode-container.hidden {
+    display: none !important; /* JavaScript로 전환 시 사용 */
+}
+
+/* 시간 표시 영역 (핵심 부분) */
+.display-area {
+    flex-grow: 1; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.time-text {
+    font-size: 20vw; /* Viewport Width 기준으로 매우 크게 설정 */
+    font-weight: bold; /* 볼드체 */
+    letter-spacing: -0.05em; 
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2); 
+    user-select: none; /* 텍스트 선택 방지 */
+}
+
+/* 타이머 설정 및 제어 영역 */
+.timer-setup, .timer-controls {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timer-setup label {
+    font-size: 1.1em;
+    margin-right: 15px;
+}
+
+#timer-input {
+    background-color: #333;
+    color: white;
+    border: 1px solid #555;
+    padding: 10px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.control-button {
+    padding: 12px 25px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-weight: bold;
+}
+
+.primary {
+    background-color: #007bff; 
+    color: white;
+}
+.secondary {
+    background-color: #6c757d; 
+    color: white;
+}
+
+/* 시계 모드 옵션 토글 버튼 */
+.clock-options {
+    position: absolute; 
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    border: 1px solid #555;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.mode-toggle-button {
+    background: none;
+    border: none;
+    color: #888;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.mode-toggle-button.active {
+    background-color: #333;
+    color: white;
+}
+
+/* [JavaScript로 처리] 타이머 종료 시 화면 깜빡임 효과 */
+.blink-active {
+    background-color: white !important; /* 배경을 흰색으로 강제 변경 */
+    color: black !important; /* 글씨를 검은색으로 강제 변경 */
+}

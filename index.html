@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전체 화면 디지털 시계 & 타이머</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        
+        <div class="tabs">
+            <button class="tab-button active" id="tab-clock">⏰ 시계</button>
+            <button class="tab-button" id="tab-timer">⏱️ 타이머</button>
+        </div>
+
+        <div id="clock-mode" class="mode-container active">
+            
+            <div class="clock-options">
+                <button class="mode-toggle-button active" id="mode-ampm">AM/PM</button>
+                <button class="mode-toggle-button" id="mode-24h">24시</button>
+            </div>
+            
+            <div class="display-area">
+                <span id="clock-display" class="time-text">00:00:00</span>
+            </div>
+        </div>
+
+        <div id="timer-mode" class="mode-container hidden">
+            
+            <div class="timer-setup">
+                <label for="timer-input">시간 설정 (HH:MM)</label>
+                <input type="time" id="timer-input" value="00:05" step="60">
+            </div>
+
+            <div class="display-area">
+                <span id="timer-display" class="time-text">00:05:00</span>
+            </div>
+            
+            <div class="timer-controls">
+                <button id="start-stop-button" class="control-button primary">시작</button>
+                <button id="reset-button" class="control-button secondary">리셋</button>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
