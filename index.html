@@ -17,8 +17,8 @@
         <div id="clock-mode" class="mode-container active">
             
             <div class="clock-options">
-                <button class="mode-toggle-button active" id="mode-ampm">AM/PM</button>
-                <button class="mode-toggle-button" id="mode-24h">24시</button>
+                <button class="mode-toggle-button" id="mode-ampm">AM/PM</button>
+                <button class="mode-toggle-button active" id="mode-24h">24시</button>
             </div>
             
             <div class="display-area">
@@ -30,11 +30,24 @@
         <div id="timer-mode" class="mode-container hidden">
             
             <div class="timer-setup">
-                <label for="timer-input">시간 설정 (HH:MM)</label>
-                <div class="timer-input-container">
-                    <button id="timer-down-button" class="timer-adjust-button">−</button>
-                    <input type="time" id="timer-input" value="00:05" step="60">
-                    <button id="timer-up-button" class="timer-adjust-button">+</button>
+                <div class="timer-input-group">
+                    <div class="timer-column">
+                        <label>시간</label>
+                        <div class="timer-controls-vertical">
+                            <button id="timer-hour-up-button" class="timer-adjust-button-triangle">▲</button>
+                            <input type="number" id="timer-hour-input" class="timer-time-input" value="0" min="0" max="23">
+                            <button id="timer-hour-down-button" class="timer-adjust-button-triangle">▼</button>
+                        </div>
+                    </div>
+                    <div class="timer-separator">:</div>
+                    <div class="timer-column">
+                        <label>분</label>
+                        <div class="timer-controls-vertical">
+                            <button id="timer-min-up-button" class="timer-adjust-button-triangle">▲</button>
+                            <input type="number" id="timer-min-input" class="timer-time-input" value="5" min="0" max="59">
+                            <button id="timer-min-down-button" class="timer-adjust-button-triangle">▼</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 

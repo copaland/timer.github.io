@@ -68,13 +68,16 @@ html, body {
 }
 
 .ampm-text {
-    font-size: 5vw; /* AM/PM은 작게 */
+    font-size: 20vw; /* 시간 숫자와 동일한 크기 */
     font-weight: bold;
-    margin-right: 10px;
     letter-spacing: -0.05em;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
     user-select: none;
-    min-width: 60px;
+    writing-mode: vertical-rl; /* 세로 쓰기 */
+    text-orientation: mixed;
+    margin-right: 15px;
+    line-height: 1;
+    height: auto;
 }
 
 .time-text {
@@ -98,36 +101,65 @@ html, body {
     margin-right: 15px;
 }
 
-.timer-input-container {
+.timer-input-group {
     display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 15px;
+}
+
+.timer-column {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 10px;
 }
 
-#timer-input {
+.timer-column label {
+    font-size: 1em;
+    color: #aaa;
+}
+
+.timer-controls-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.timer-time-input {
     background-color: #333;
     color: white;
     border: 1px solid #555;
-    padding: 10px;
-    font-size: 1.2em;
+    padding: 8px 12px;
+    font-size: 1.5em;
     border-radius: 5px;
     text-align: center;
-    width: 120px;
+    width: 60px;
 }
 
-.timer-adjust-button {
+.timer-adjust-button-triangle {
     background-color: #444;
     color: white;
     border: 1px solid #555;
     padding: 8px 12px;
-    font-size: 1.2em;
+    font-size: 1.3em;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 3px;
     transition: background-color 0.2s;
+    min-width: 60px;
+    font-weight: bold;
 }
 
-.timer-adjust-button:hover {
+.timer-adjust-button-triangle:hover {
     background-color: #555;
+}
+
+.timer-separator {
+    font-size: 2em;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
 }
 
 .control-button {

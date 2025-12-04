@@ -13,15 +13,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const clockDisplay = document.getElementById('clock-display');
     const modeAmpmButton = document.getElementById('mode-ampm');
     const mode24hButton = document.getElementById('mode-24h');
-    let is24HourMode = false; // 기본값: AM/PM 모드
+    let is24HourMode = true; // 기본값: 24시 모드
 
     // 타이머 모드 요소
     const timerInput = document.getElementById('timer-input');
     const timerDisplay = document.getElementById('timer-display');
     const startStopButton = document.getElementById('start-stop-button');
     const resetButton = document.getElementById('reset-button');
-    const timerUpButton = document.getElementById('timer-up-button');
-    const timerDownButton = document.getElementById('timer-down-button');
+    const timerHourInput = document.getElementById('timer-hour-input');
+    const timerMinInput = document.getElementById('timer-min-input');
+    const timerHourUpButton = document.getElementById('timer-hour-up-button');
+    const timerHourDownButton = document.getElementById('timer-hour-down-button');
+    const timerMinUpButton = document.getElementById('timer-min-up-button');
+    const timerMinDownButton = document.getElementById('timer-min-down-button');
     
     // 타이머 상태 변수
     let clockInterval;
@@ -160,18 +164,17 @@ document.addEventListener('DOMContentLoaded', () => {
             clearInterval(countdownInterval);
             isTimerRunning = false;
             startStopButton.textContent = '재개';
-            timerInput.disabled = false;
             
         } else {
             // 시작 또는 재개
             
             // 새로 시작하는 경우, 입력값 파싱
             if (startStopButton.textContent === '시작') {
-                const [inputH, inputM] = timerInput.value.split(':').map(Number);
+                const h = parseInt(timerHourInput.value) || 0;
+                const m = parseInt(timerMinInput.value) || 0;
                 
-                // HH:MM 형식 입력을 초로 변환 (타이머는 HH:MM만 설정 가능)
-                initialTotalSeconds = (inputH * 3600) + (inputM * 60);
-                totalSeconds = initialTotalSeconds; 
+                initialTotalSeconds = (h * 3600) + (m * 60);
+                totalSeconds = initialTotalSeconds;
 
                 if (totalSeconds <= 0) {
                     alert("타이머 시간을 설정해 주세요.");
@@ -182,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // 타이머 시작
             isTimerRunning = true;
             startStopButton.textContent = '정지';
-            timerInput.disabled = true;
+            
             
             countdownInterval = setInterval(countdown, 1000);
             
@@ -196,11 +199,11 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(countdownInterval);
         isTimerRunning = false;
         startStopButton.textContent = '시작';
-        timerInput.disabled = false;
         
         // 초기 시간으로 복원 (input value를 기반으로 다시 계산)
-        const [inputH, inputM] = timerInput.value.split(':').map(Number);
-        totalSeconds = (inputH * 3600) + (inputM * 60);
+        const h = parseInt(timerHourInput.value) || 0;
+        const m = parseInt(timerMinInput.value) || 0;
+        totalSeconds = (h * 3600) + (m * 60);
         
         timerDisplay.textContent = formatTime(totalSeconds);
 
@@ -256,34 +259,40 @@ document.addEventListener('DOMContentLoaded', () => {
     resetButton.addEventListener('click', resetTimer);
     
     // 타이머 입력 값 변경 시 리셋
-    timerInput.addEventListener('change', resetTimer);
+    timerHourInput.addEventListener('change', resetTimer);
+    timerMinInput.addEventListener('change', resetTimer);
 
-    // 타이머 업다운 버튼 이벤트 리스너
-    timerUpButton.addEventListener('click', () => {
-        let [h, m] = timerInput.value.split(':').map(Number);
-        m += 1;
-        if (m >= 60) {
-            m = 0;
-            h += 1;
-        }
-        if (h >= 24) {
-            h = 0;
-        }
-        timerInput.value = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+    // 시간 업다운 버튼 이벤트 리스너
+    timerHourUpButton.addEventListener('click', () => {
+        let h = parseInt(timerHourInput.value) || 0;
+        h += 1;
+        if (h >= 24) h = 0;
+        timerHourInput.value = String(h).padStart(2, '0');
         resetTimer();
     });
 
-    timerDownButton.addEventListener('click', () => {
-        let [h, m] = timerInput.value.split(':').map(Number);
+    timerHourDownButton.addEventListener('click', () => {
+        let h = parseInt(timerHourInput.value) || 0;
+        h -= 1;
+        if (h < 0) h = 23;
+        timerHourInput.value = String(h).padStart(2, '0');
+        resetTimer();
+    });
+
+    // 분 업다운 버튼 이벤트 리스너
+    timerMinUpButton.addEventListener('click', () => {
+        let m = parseInt(timerMinInput.value) || 0;
+        m += 1;
+        if (m >= 60) m = 0;
+        timerMinInput.value = String(m).padStart(2, '0');
+        resetTimer();
+    });
+
+    timerMinDownButton.addEventListener('click', () => {
+        let m = parseInt(timerMinInput.value) || 0;
         m -= 1;
-        if (m < 0) {
-            m = 59;
-            h -= 1;
-        }
-        if (h < 0) {
-            h = 23;
-        }
-        timerInput.value = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+        if (m < 0) m = 59;
+        timerMinInput.value = String(m).padStart(2, '0');
         resetTimer();
     });
 
@@ -292,9 +301,10 @@ document.addEventListener('DOMContentLoaded', () => {
     (function init() {
         // 기본 모드: 시계 모드 활성화 및 시계 인터벌 시작
         switchMode('clock'); 
-        toggleClockMode(false); // 기본 시계 모드: AM/PM
+        toggleClockMode(true); // 기본 시계 모드: 24시
         
         // 타이머 초기값 설정
-        timerInput.value = "00:05"; // 5분
+        timerHourInput.value = "00";
+        timerMinInput.value = "05";
     })();
 });
