@@ -22,6 +22,7 @@
             </div>
             
             <div class="display-area">
+                <span id="ampm-display" class="ampm-text"></span>
                 <span id="clock-display" class="time-text">00:00:00</span>
             </div>
         </div>
@@ -30,7 +31,11 @@
             
             <div class="timer-setup">
                 <label for="timer-input">시간 설정 (HH:MM)</label>
-                <input type="time" id="timer-input" value="00:05" step="60">
+                <div class="timer-input-container">
+                    <button id="timer-down-button" class="timer-adjust-button">−</button>
+                    <input type="time" id="timer-input" value="00:05" step="60">
+                    <button id="timer-up-button" class="timer-adjust-button">+</button>
+                </div>
             </div>
 
             <div class="display-area">

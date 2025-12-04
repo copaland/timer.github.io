@@ -67,6 +67,16 @@ html, body {
     width: 100%;
 }
 
+.ampm-text {
+    font-size: 5vw; /* AM/PM은 작게 */
+    font-weight: bold;
+    margin-right: 10px;
+    letter-spacing: -0.05em;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    user-select: none;
+    min-width: 60px;
+}
+
 .time-text {
     font-size: 20vw; /* Viewport Width 기준으로 매우 크게 설정 */
     font-weight: bold; /* 볼드체 */
@@ -88,6 +98,12 @@ html, body {
     margin-right: 15px;
 }
 
+.timer-input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 #timer-input {
     background-color: #333;
     color: white;
@@ -96,6 +112,22 @@ html, body {
     font-size: 1.2em;
     border-radius: 5px;
     text-align: center;
+    width: 120px;
+}
+
+.timer-adjust-button {
+    background-color: #444;
+    color: white;
+    border: 1px solid #555;
+    padding: 8px 12px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.timer-adjust-button:hover {
+    background-color: #555;
 }
 
 .control-button {
