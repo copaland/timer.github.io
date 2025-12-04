@@ -34,6 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let initialTotalSeconds = 300; // 기본값 5분 (00:05)
     let isTimerRunning = false;
     let blinkInterval;
+    
+    // Audio Context 생성
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
 
     // --- 2. 헬퍼 함수 ---
@@ -53,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /** Web Audio API를 사용한 알람 소리 재생 */
     function playAlarm() {
-        //         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
         const oscillator = audioContext.createOscillator();
         const gainNode = audioContext.createGain();
 
@@ -135,16 +137,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /** 타이머 1초 카운트다운 */
     function countdown() {
-        totalSeconds--; 
-
-        if (totalSeconds < 0) {
+        if (totalSeconds <= 0) {
             clearInterval(countdownInterval);
             isTimerRunning = false;
             startStopButton.textContent = '시작';
             
-            timerInput.disabled = false;
-            
-            timerDisplay.textContent = "00:00";
+            timerDisplay.textContent = "00:00:00";
             
             // ⏰ 시간 종료 시 알람 및 깜빡임
             playAlarm();
@@ -153,6 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        totalSeconds--;
+        
         // 시간 표시 업데이트
         timerDisplay.textContent = formatTime(totalSeconds);
     }

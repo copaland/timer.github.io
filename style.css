@@ -145,27 +145,30 @@ html, body {
     align-items: center;
     justify-content: center;
     width: 100%;
+    position: relative;
 }
 
 .timer-buttons-row {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 10vw;
     width: 100%;
+    max-width: 60%;
+    margin: 0 auto;
 }
 
 .timer-adjust-button-large {
     background: none;
     color: white;
     border: 3px solid white;
-    padding: 15px 30px;
-    font-size: 3em;
+    padding: 12px 25px;
+    font-size: 2.5em;
     cursor: pointer;
     border-radius: 10px;
     transition: all 0.2s;
     font-weight: bold;
-    min-width: 100px;
+    min-width: 80px;
 }
 
 .timer-adjust-button-large:hover {
