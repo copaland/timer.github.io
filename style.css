@@ -103,63 +103,74 @@ html, body {
 
 .timer-input-group {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
     gap: 15px;
+    margin-bottom: 30px;
 }
 
 .timer-column {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
 }
 
 .timer-column label {
-    font-size: 1em;
+    font-size: 0.9em;
     color: #aaa;
-}
-
-.timer-controls-vertical {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
 }
 
 .timer-time-input {
     background-color: #333;
     color: white;
     border: 1px solid #555;
-    padding: 8px 12px;
-    font-size: 1.5em;
+    padding: 6px 10px;
+    font-size: 1.2em;
     border-radius: 5px;
     text-align: center;
-    width: 60px;
+    width: 50px;
 }
 
-.timer-adjust-button-triangle {
-    background-color: #444;
+.timer-separator-small {
+    font-size: 1.5em;
+    font-weight: bold;
     color: white;
-    border: 1px solid #555;
-    padding: 8px 12px;
-    font-size: 1.3em;
+}
+
+.timer-display-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.timer-buttons-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+}
+
+.timer-adjust-button-large {
+    background: none;
+    color: white;
+    border: 3px solid white;
+    padding: 15px 30px;
+    font-size: 3em;
     cursor: pointer;
-    border-radius: 3px;
-    transition: background-color 0.2s;
-    min-width: 60px;
+    border-radius: 10px;
+    transition: all 0.2s;
     font-weight: bold;
+    min-width: 100px;
 }
 
-.timer-adjust-button-triangle:hover {
-    background-color: #555;
-}
-
-.timer-separator {
-    font-size: 2em;
-    font-weight: bold;
-    color: white;
-    margin-bottom: 10px;
+.timer-adjust-button-large:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
 }
 
 .control-button {

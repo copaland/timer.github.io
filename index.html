@@ -33,26 +33,32 @@
                 <div class="timer-input-group">
                     <div class="timer-column">
                         <label>시간</label>
-                        <div class="timer-controls-vertical">
-                            <button id="timer-hour-up-button" class="timer-adjust-button-triangle">▲</button>
-                            <input type="number" id="timer-hour-input" class="timer-time-input" value="0" min="0" max="23">
-                            <button id="timer-hour-down-button" class="timer-adjust-button-triangle">▼</button>
-                        </div>
+                        <input type="number" id="timer-hour-input" class="timer-time-input" value="0" min="0" max="23">
                     </div>
-                    <div class="timer-separator">:</div>
+                    <div class="timer-separator-small">:</div>
                     <div class="timer-column">
                         <label>분</label>
-                        <div class="timer-controls-vertical">
-                            <button id="timer-min-up-button" class="timer-adjust-button-triangle">▲</button>
-                            <input type="number" id="timer-min-input" class="timer-time-input" value="5" min="0" max="59">
-                            <button id="timer-min-down-button" class="timer-adjust-button-triangle">▼</button>
-                        </div>
+                        <input type="number" id="timer-min-input" class="timer-time-input" value="5" min="0" max="59">
                     </div>
                 </div>
             </div>
 
-            <div class="display-area">
-                <span id="timer-display" class="time-text">00:05:00</span>
+            <div class="timer-display-container">
+                <div class="timer-buttons-row">
+                    <button id="timer-hour-up-button" class="timer-adjust-button-large">▲</button>
+                    <button id="timer-min-up-button" class="timer-adjust-button-large">▲</button>
+                    <button id="timer-sec-up-button" class="timer-adjust-button-large" style="visibility: hidden;">▲</button>
+                </div>
+                
+                <div class="display-area">
+                    <span id="timer-display" class="time-text">00:05:00</span>
+                </div>
+                
+                <div class="timer-buttons-row">
+                    <button id="timer-hour-down-button" class="timer-adjust-button-large">▼</button>
+                    <button id="timer-min-down-button" class="timer-adjust-button-large">▼</button>
+                    <button id="timer-sec-down-button" class="timer-adjust-button-large" style="visibility: hidden;">▼</button>
+                </div>
             </div>
             
             <div class="timer-controls">
